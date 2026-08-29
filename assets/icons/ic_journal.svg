@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- Book spine / left cover - slightly darker -->
+  <rect x="3" y="2.5" width="3.5" height="19" rx="1.75" fill="currentColor"/>
+  <!-- Book main body -->
+  <rect x="5.5" y="2.5" width="15.5" height="19" rx="2" fill="currentColor"/>
+  <!-- Heart on cover, white, centered on right part -->
+  <path d="M13.5 9.5 C13.5 8.12 14.62 7 16 7 C17.38 7 18.5 8.12 18.5 9.5 C18.5 11 17 12.4 16 13.3 C15 12.4 13.5 11 13.5 9.5 Z" fill="white"/>
+</svg>

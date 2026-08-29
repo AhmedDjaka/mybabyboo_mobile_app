@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_spacing.dart';
+import 'app_button.dart';
+
+class AppErrorState extends StatelessWidget {
+  const AppErrorState({super.key, required this.message, this.onRetry});
+
+  final String message;
+  final VoidCallback? onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.xxl),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, size: 48, color: AppColors.error),
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: AppColors.textPrimary),
+            ),
+            if (onRetry != null) ...[
+              const SizedBox(height: AppSpacing.lg),
+              AppButton(
+                text: 'Réessayer',
+                onPressed: onRetry!,
+                type: AppButtonType.outline,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
