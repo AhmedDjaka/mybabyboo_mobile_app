@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PregnancyTipsState {
 
- bool get isLoading; String? get error; List<PregnancyTip> get tips; PregnancyTipCategory? get selectedCategory; int? get currentWeekContext;
+ bool get isLoading; String? get error; List<PregnancyTip> get allTips; List<PregnancyTip> get tips; PregnancyTipCategory? get selectedCategory; int? get currentWeekContext;
 /// Create a copy of PregnancyTipsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PregnancyTipsStateCopyWith<PregnancyTipsState> get copyWith => _$PregnancyTipsS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PregnancyTipsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other.tips, tips)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.currentWeekContext, currentWeekContext) || other.currentWeekContext == currentWeekContext));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PregnancyTipsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other.allTips, allTips)&&const DeepCollectionEquality().equals(other.tips, tips)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.currentWeekContext, currentWeekContext) || other.currentWeekContext == currentWeekContext));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,error,const DeepCollectionEquality().hash(tips),selectedCategory,currentWeekContext);
+int get hashCode => Object.hash(runtimeType,isLoading,error,const DeepCollectionEquality().hash(allTips),const DeepCollectionEquality().hash(tips),selectedCategory,currentWeekContext);
 
 @override
 String toString() {
-  return 'PregnancyTipsState(isLoading: $isLoading, error: $error, tips: $tips, selectedCategory: $selectedCategory, currentWeekContext: $currentWeekContext)';
+  return 'PregnancyTipsState(isLoading: $isLoading, error: $error, allTips: $allTips, tips: $tips, selectedCategory: $selectedCategory, currentWeekContext: $currentWeekContext)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PregnancyTipsStateCopyWith<$Res>  {
   factory $PregnancyTipsStateCopyWith(PregnancyTipsState value, $Res Function(PregnancyTipsState) _then) = _$PregnancyTipsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, String? error, List<PregnancyTip> tips, PregnancyTipCategory? selectedCategory, int? currentWeekContext
+ bool isLoading, String? error, List<PregnancyTip> allTips, List<PregnancyTip> tips, PregnancyTipCategory? selectedCategory, int? currentWeekContext
 });
 
 
@@ -62,11 +62,12 @@ class _$PregnancyTipsStateCopyWithImpl<$Res>
 
 /// Create a copy of PregnancyTipsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? error = freezed,Object? tips = null,Object? selectedCategory = freezed,Object? currentWeekContext = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? error = freezed,Object? allTips = null,Object? tips = null,Object? selectedCategory = freezed,Object? currentWeekContext = freezed,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as String?,tips: null == tips ? _self.tips : tips // ignore: cast_nullable_to_non_nullable
+as String?,allTips: null == allTips ? _self.allTips : allTips // ignore: cast_nullable_to_non_nullable
+as List<PregnancyTip>,tips: null == tips ? _self.tips : tips // ignore: cast_nullable_to_non_nullable
 as List<PregnancyTip>,selectedCategory: freezed == selectedCategory ? _self.selectedCategory : selectedCategory // ignore: cast_nullable_to_non_nullable
 as PregnancyTipCategory?,currentWeekContext: freezed == currentWeekContext ? _self.currentWeekContext : currentWeekContext // ignore: cast_nullable_to_non_nullable
 as int?,
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String? error,  List<PregnancyTip> tips,  PregnancyTipCategory? selectedCategory,  int? currentWeekContext)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String? error,  List<PregnancyTip> allTips,  List<PregnancyTip> tips,  PregnancyTipCategory? selectedCategory,  int? currentWeekContext)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PregnancyTipsState() when $default != null:
-return $default(_that.isLoading,_that.error,_that.tips,_that.selectedCategory,_that.currentWeekContext);case _:
+return $default(_that.isLoading,_that.error,_that.allTips,_that.tips,_that.selectedCategory,_that.currentWeekContext);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.isLoading,_that.error,_that.tips,_that.selectedCategory,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String? error,  List<PregnancyTip> tips,  PregnancyTipCategory? selectedCategory,  int? currentWeekContext)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String? error,  List<PregnancyTip> allTips,  List<PregnancyTip> tips,  PregnancyTipCategory? selectedCategory,  int? currentWeekContext)  $default,) {final _that = this;
 switch (_that) {
 case _PregnancyTipsState():
-return $default(_that.isLoading,_that.error,_that.tips,_that.selectedCategory,_that.currentWeekContext);case _:
+return $default(_that.isLoading,_that.error,_that.allTips,_that.tips,_that.selectedCategory,_that.currentWeekContext);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.isLoading,_that.error,_that.tips,_that.selectedCategory,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String? error,  List<PregnancyTip> tips,  PregnancyTipCategory? selectedCategory,  int? currentWeekContext)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String? error,  List<PregnancyTip> allTips,  List<PregnancyTip> tips,  PregnancyTipCategory? selectedCategory,  int? currentWeekContext)?  $default,) {final _that = this;
 switch (_that) {
 case _PregnancyTipsState() when $default != null:
-return $default(_that.isLoading,_that.error,_that.tips,_that.selectedCategory,_that.currentWeekContext);case _:
+return $default(_that.isLoading,_that.error,_that.allTips,_that.tips,_that.selectedCategory,_that.currentWeekContext);case _:
   return null;
 
 }
@@ -210,11 +211,18 @@ return $default(_that.isLoading,_that.error,_that.tips,_that.selectedCategory,_t
 
 
 class _PregnancyTipsState implements PregnancyTipsState {
-  const _PregnancyTipsState({this.isLoading = true, this.error = null, final  List<PregnancyTip> tips = const [], this.selectedCategory, this.currentWeekContext}): _tips = tips;
+  const _PregnancyTipsState({this.isLoading = true, this.error = null, final  List<PregnancyTip> allTips = const [], final  List<PregnancyTip> tips = const [], this.selectedCategory, this.currentWeekContext}): _allTips = allTips,_tips = tips;
   
 
 @override@JsonKey() final  bool isLoading;
 @override@JsonKey() final  String? error;
+ final  List<PregnancyTip> _allTips;
+@override@JsonKey() List<PregnancyTip> get allTips {
+  if (_allTips is EqualUnmodifiableListView) return _allTips;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_allTips);
+}
+
  final  List<PregnancyTip> _tips;
 @override@JsonKey() List<PregnancyTip> get tips {
   if (_tips is EqualUnmodifiableListView) return _tips;
@@ -235,16 +243,16 @@ _$PregnancyTipsStateCopyWith<_PregnancyTipsState> get copyWith => __$PregnancyTi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PregnancyTipsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other._tips, _tips)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.currentWeekContext, currentWeekContext) || other.currentWeekContext == currentWeekContext));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PregnancyTipsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other._allTips, _allTips)&&const DeepCollectionEquality().equals(other._tips, _tips)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.currentWeekContext, currentWeekContext) || other.currentWeekContext == currentWeekContext));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,error,const DeepCollectionEquality().hash(_tips),selectedCategory,currentWeekContext);
+int get hashCode => Object.hash(runtimeType,isLoading,error,const DeepCollectionEquality().hash(_allTips),const DeepCollectionEquality().hash(_tips),selectedCategory,currentWeekContext);
 
 @override
 String toString() {
-  return 'PregnancyTipsState(isLoading: $isLoading, error: $error, tips: $tips, selectedCategory: $selectedCategory, currentWeekContext: $currentWeekContext)';
+  return 'PregnancyTipsState(isLoading: $isLoading, error: $error, allTips: $allTips, tips: $tips, selectedCategory: $selectedCategory, currentWeekContext: $currentWeekContext)';
 }
 
 
@@ -255,7 +263,7 @@ abstract mixin class _$PregnancyTipsStateCopyWith<$Res> implements $PregnancyTip
   factory _$PregnancyTipsStateCopyWith(_PregnancyTipsState value, $Res Function(_PregnancyTipsState) _then) = __$PregnancyTipsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, String? error, List<PregnancyTip> tips, PregnancyTipCategory? selectedCategory, int? currentWeekContext
+ bool isLoading, String? error, List<PregnancyTip> allTips, List<PregnancyTip> tips, PregnancyTipCategory? selectedCategory, int? currentWeekContext
 });
 
 
@@ -272,11 +280,12 @@ class __$PregnancyTipsStateCopyWithImpl<$Res>
 
 /// Create a copy of PregnancyTipsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? error = freezed,Object? tips = null,Object? selectedCategory = freezed,Object? currentWeekContext = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? error = freezed,Object? allTips = null,Object? tips = null,Object? selectedCategory = freezed,Object? currentWeekContext = freezed,}) {
   return _then(_PregnancyTipsState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as String?,tips: null == tips ? _self._tips : tips // ignore: cast_nullable_to_non_nullable
+as String?,allTips: null == allTips ? _self._allTips : allTips // ignore: cast_nullable_to_non_nullable
+as List<PregnancyTip>,tips: null == tips ? _self._tips : tips // ignore: cast_nullable_to_non_nullable
 as List<PregnancyTip>,selectedCategory: freezed == selectedCategory ? _self.selectedCategory : selectedCategory // ignore: cast_nullable_to_non_nullable
 as PregnancyTipCategory?,currentWeekContext: freezed == currentWeekContext ? _self.currentWeekContext : currentWeekContext // ignore: cast_nullable_to_non_nullable
 as int?,

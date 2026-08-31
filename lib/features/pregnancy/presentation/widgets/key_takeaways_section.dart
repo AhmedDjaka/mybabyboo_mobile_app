@@ -19,10 +19,12 @@ class KeyTakeawaysSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surfaceSoft,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.primaryContainer.withOpacity(0.5)),
+        border: Border.all(
+          color: AppColors.primaryContainer.withValues(alpha: 0.5),
+        ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.03),
+            color: AppColors.primary.withValues(alpha: 0.03),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -67,7 +69,7 @@ class KeyTakeawaysSection extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 2.0),
                     padding: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
-                      color: AppColors.tertiary.withOpacity(0.15),
+                      color: AppColors.tertiary.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(

@@ -17,6 +17,7 @@ class ApiEndpoints {
   static const String pregnancySetup = '/api/v1/pregnancy/setup';
   static const String pregnancyCurrent = '/api/v1/pregnancy/current';
   static const String pregnancyWeeks = '/api/v1/pregnancy/weeks';
+  static const String pregnancyTips = '/api/v1/pregnancy/tips';
 
   // Reference
   static const String referenceCountries = '/api/v1/reference/countries';

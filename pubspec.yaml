@@ -98,6 +98,7 @@ flutter:
     - assets/branding/app_icon/
     - assets/illustrations/auth/
     - assets/illustrations/splash/
+    - assets/illustrations/tips/
     - assets/illustrations/onboarding/
     - assets/illustrations/home/
     - assets/illustrations/pregnancy/

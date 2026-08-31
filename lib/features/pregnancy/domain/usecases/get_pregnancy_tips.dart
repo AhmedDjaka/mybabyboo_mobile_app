@@ -6,13 +6,7 @@ class GetPregnancyTips {
 
   GetPregnancyTips(this.repository);
 
-  Future<List<PregnancyTip>> call({
-    int? week,
-    String? category,
-  }) async {
-    return repository.getPregnancyTips(
-      week: week,
-      category: category,
-    );
+  Future<List<PregnancyTip>> call({int? week, String? category}) async {
+    return repository.getPregnancyTips(week: week, category: category);
   }
 }

@@ -92,7 +92,7 @@ class PregnancyRemoteDatasource {
     }
 
     final response = await _dio.get(
-      '/v1/pregnancy/tips', // Will add to ApiEndpoints later, but hardcoding for now or I can update ApiEndpoints.
+      ApiEndpoints.pregnancyTips,
       queryParameters: queryParameters,
     );
 

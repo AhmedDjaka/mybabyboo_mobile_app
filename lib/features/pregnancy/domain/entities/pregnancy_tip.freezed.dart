@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PregnancyTip {
 
- int get id; int? get week; PregnancyTipCategory get category; String get title; String get summary; String get content; bool get isFeatured;
+ int get id; int? get week; PregnancyTipCategory get category; String get title; String get summary; String get content; bool get isFeatured; PregnancyTipIllustration? get illustration;
 /// Create a copy of PregnancyTip
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PregnancyTipCopyWith<PregnancyTip> get copyWith => _$PregnancyTipCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PregnancyTip&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PregnancyTip&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured)&&(identical(other.illustration, illustration) || other.illustration == illustration));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured);
+int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured,illustration);
 
 @override
 String toString() {
-  return 'PregnancyTip(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured)';
+  return 'PregnancyTip(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured, illustration: $illustration)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $PregnancyTipCopyWith<$Res>  {
   factory $PregnancyTipCopyWith(PregnancyTip value, $Res Function(PregnancyTip) _then) = _$PregnancyTipCopyWithImpl;
 @useResult
 $Res call({
- int id, int? week, PregnancyTipCategory category, String title, String summary, String content, bool isFeatured
+ int id, int? week, PregnancyTipCategory category, String title, String summary, String content, bool isFeatured, PregnancyTipIllustration? illustration
 });
 
 
-
+$PregnancyTipIllustrationCopyWith<$Res>? get illustration;
 
 }
 /// @nodoc
@@ -62,7 +62,7 @@ class _$PregnancyTipCopyWithImpl<$Res>
 
 /// Create a copy of PregnancyTip
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,Object? illustration = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,week: freezed == week ? _self.week : week // ignore: cast_nullable_to_non_nullable
@@ -71,10 +71,23 @@ as PregnancyTipCategory,title: null == title ? _self.title : title // ignore: ca
 as String,summary: null == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,isFeatured: null == isFeatured ? _self.isFeatured : isFeatured // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,illustration: freezed == illustration ? _self.illustration : illustration // ignore: cast_nullable_to_non_nullable
+as PregnancyTipIllustration?,
   ));
 }
+/// Create a copy of PregnancyTip
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PregnancyTipIllustrationCopyWith<$Res>? get illustration {
+    if (_self.illustration == null) {
+    return null;
+  }
 
+  return $PregnancyTipIllustrationCopyWith<$Res>(_self.illustration!, (value) {
+    return _then(_self.copyWith(illustration: value));
+  });
+}
 }
 
 
@@ -156,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? week,  PregnancyTipCategory category,  String title,  String summary,  String content,  bool isFeatured)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? week,  PregnancyTipCategory category,  String title,  String summary,  String content,  bool isFeatured,  PregnancyTipIllustration? illustration)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PregnancyTip() when $default != null:
-return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured);case _:
+return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured,_that.illustration);case _:
   return orElse();
 
 }
@@ -177,10 +190,10 @@ return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? week,  PregnancyTipCategory category,  String title,  String summary,  String content,  bool isFeatured)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? week,  PregnancyTipCategory category,  String title,  String summary,  String content,  bool isFeatured,  PregnancyTipIllustration? illustration)  $default,) {final _that = this;
 switch (_that) {
 case _PregnancyTip():
-return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured);case _:
+return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured,_that.illustration);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +210,10 @@ return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? week,  PregnancyTipCategory category,  String title,  String summary,  String content,  bool isFeatured)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? week,  PregnancyTipCategory category,  String title,  String summary,  String content,  bool isFeatured,  PregnancyTipIllustration? illustration)?  $default,) {final _that = this;
 switch (_that) {
 case _PregnancyTip() when $default != null:
-return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured);case _:
+return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured,_that.illustration);case _:
   return null;
 
 }
@@ -212,7 +225,7 @@ return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_th
 
 
 class _PregnancyTip implements PregnancyTip {
-  const _PregnancyTip({required this.id, this.week, required this.category, required this.title, required this.summary, required this.content, required this.isFeatured});
+  const _PregnancyTip({required this.id, this.week, required this.category, required this.title, required this.summary, required this.content, required this.isFeatured, this.illustration});
   
 
 @override final  int id;
@@ -222,6 +235,7 @@ class _PregnancyTip implements PregnancyTip {
 @override final  String summary;
 @override final  String content;
 @override final  bool isFeatured;
+@override final  PregnancyTipIllustration? illustration;
 
 /// Create a copy of PregnancyTip
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +247,16 @@ _$PregnancyTipCopyWith<_PregnancyTip> get copyWith => __$PregnancyTipCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PregnancyTip&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PregnancyTip&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured)&&(identical(other.illustration, illustration) || other.illustration == illustration));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured);
+int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured,illustration);
 
 @override
 String toString() {
-  return 'PregnancyTip(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured)';
+  return 'PregnancyTip(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured, illustration: $illustration)';
 }
 
 
@@ -253,11 +267,11 @@ abstract mixin class _$PregnancyTipCopyWith<$Res> implements $PregnancyTipCopyWi
   factory _$PregnancyTipCopyWith(_PregnancyTip value, $Res Function(_PregnancyTip) _then) = __$PregnancyTipCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int? week, PregnancyTipCategory category, String title, String summary, String content, bool isFeatured
+ int id, int? week, PregnancyTipCategory category, String title, String summary, String content, bool isFeatured, PregnancyTipIllustration? illustration
 });
 
 
-
+@override $PregnancyTipIllustrationCopyWith<$Res>? get illustration;
 
 }
 /// @nodoc
@@ -270,7 +284,7 @@ class __$PregnancyTipCopyWithImpl<$Res>
 
 /// Create a copy of PregnancyTip
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,Object? illustration = freezed,}) {
   return _then(_PregnancyTip(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,week: freezed == week ? _self.week : week // ignore: cast_nullable_to_non_nullable
@@ -279,11 +293,24 @@ as PregnancyTipCategory,title: null == title ? _self.title : title // ignore: ca
 as String,summary: null == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,isFeatured: null == isFeatured ? _self.isFeatured : isFeatured // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,illustration: freezed == illustration ? _self.illustration : illustration // ignore: cast_nullable_to_non_nullable
+as PregnancyTipIllustration?,
   ));
 }
 
+/// Create a copy of PregnancyTip
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PregnancyTipIllustrationCopyWith<$Res>? get illustration {
+    if (_self.illustration == null) {
+    return null;
+  }
 
+  return $PregnancyTipIllustrationCopyWith<$Res>(_self.illustration!, (value) {
+    return _then(_self.copyWith(illustration: value));
+  });
+}
 }
 
 // dart format on

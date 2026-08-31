@@ -18,7 +18,9 @@ class ApiErrorMapper {
 
           String message = "Une erreur est survenue.";
 
-          if (statusCode == 422 && data is Map && data['errors'] != null) {
+          if (statusCode == 401) {
+            message = "Votre session a expiré. Reconnectez-vous pour continuer.";
+          } else if (statusCode == 422 && data is Map && data['errors'] != null) {
             final errors = data['errors'] as Map<String, dynamic>;
             if (errors.containsKey('phone')) {
               final phoneErrors = errors['phone'] as List;
@@ -48,8 +50,6 @@ class ApiErrorMapper {
               data['message'] != null &&
               statusCode != 422) {
             message = data['message'];
-          } else if (statusCode == 401) {
-            message = "Non autorisé ou session expirée.";
           } else if (statusCode == 403) {
             message = "Accès refusé.";
           } else if (statusCode == 404) {

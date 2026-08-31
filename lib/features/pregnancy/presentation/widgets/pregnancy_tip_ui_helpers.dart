@@ -53,4 +53,21 @@ class PregnancyTipUiHelpers {
         return Icons.lightbulb_outline_rounded;
     }
   }
+
+  static String? getImagePathForCategory(PregnancyTipCategory category) {
+    switch (category) {
+      case PregnancyTipCategory.wellbeing:
+        return 'assets/illustrations/tips/wellbeing.jpg';
+      case PregnancyTipCategory.nutrition:
+        return 'assets/illustrations/tips/nutrition.jpg';
+      case PregnancyTipCategory.sleep:
+        return 'assets/illustrations/tips/sleep.jpg';
+      case PregnancyTipCategory.activity:
+        return 'assets/illustrations/tips/activity.jpg';
+      case PregnancyTipCategory.organization:
+        return 'assets/illustrations/tips/organization.jpg';
+      case PregnancyTipCategory.unknown:
+        return null;
+    }
+  }
 }

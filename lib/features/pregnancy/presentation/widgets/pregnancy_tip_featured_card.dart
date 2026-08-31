@@ -10,8 +10,12 @@ class PregnancyTipFeaturedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryColor = PregnancyTipUiHelpers.getColorForCategory(tip.category);
-    final categoryLabel = PregnancyTipUiHelpers.getLabelForCategory(tip.category);
+    final categoryColor = PregnancyTipUiHelpers.getColorForCategory(
+      tip.category,
+    );
+    final categoryLabel = PregnancyTipUiHelpers.getLabelForCategory(
+      tip.category,
+    );
 
     return GestureDetector(
       onTap: () {
@@ -71,7 +75,10 @@ class PregnancyTipFeaturedCard extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),

@@ -15,6 +15,11 @@ _PregnancyTipModel _$PregnancyTipModelFromJson(Map<String, dynamic> json) =>
       summary: json['summary'] as String,
       content: json['content'] as String,
       isFeatured: json['is_featured'] as bool,
+      illustration: json['illustration'] == null
+          ? null
+          : PregnancyTipIllustrationModel.fromJson(
+              json['illustration'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$PregnancyTipModelToJson(_PregnancyTipModel instance) =>
@@ -26,4 +31,5 @@ Map<String, dynamic> _$PregnancyTipModelToJson(_PregnancyTipModel instance) =>
       'summary': instance.summary,
       'content': instance.content,
       'is_featured': instance.isFeatured,
+      'illustration': instance.illustration,
     };

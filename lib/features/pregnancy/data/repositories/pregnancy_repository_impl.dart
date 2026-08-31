@@ -87,7 +87,9 @@ class PregnancyRepositoryImpl implements PregnancyRepository {
         week: week,
         category: category,
       );
-      return models.map((model) => PregnancyTipMapper.fromModel(model)).toList();
+      return models
+          .map((model) => PregnancyTipMapper.fromModel(model))
+          .toList();
     } on DioException catch (e) {
       throw ApiErrorMapper.map(e);
     } catch (e) {

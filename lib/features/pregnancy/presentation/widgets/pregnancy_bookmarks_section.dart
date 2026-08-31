@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../app/theme/app_colors.dart';
 import 'boo_bottom_sheet.dart';
 import 'mom_bottom_sheet.dart';
 import 'symptoms_bottom_sheet.dart';
+import 'tracking_bottom_sheet.dart';
 
 class PregnancyBookmarksSection extends StatelessWidget {
   final double? sizeCm;
@@ -41,20 +41,22 @@ class PregnancyBookmarksSection extends StatelessWidget {
           builder: (context, constraints) {
             final double maxWidth = constraints.maxWidth;
             final bool isSmallPhone = maxWidth < 380;
-            
+
             final double horizontalGap = 12.0;
             final double verticalGap = 12.0;
-            
+
             // Si small phone : 2 colonnes, sinon 4 colonnes
             final int crossAxisCount = isSmallPhone ? 2 : 4;
-            
-            final double cardWidth = (maxWidth - (horizontalGap * (crossAxisCount - 1))) / crossAxisCount;
+
+            final double cardWidth =
+                (maxWidth - (horizontalGap * (crossAxisCount - 1))) /
+                crossAxisCount;
 
             final cards = [
               _BookmarkCard(
                 width: cardWidth,
                 title: 'Bébé',
-                svgPath: 'assets/icons/pregnancy/baby.svg',
+                imagePath: 'assets/illustrations/home/home_baby_boo.png',
                 onTap: () => BooBottomSheet.show(
                   context,
                   sizeCm: sizeCm,
@@ -66,7 +68,7 @@ class PregnancyBookmarksSection extends StatelessWidget {
               _BookmarkCard(
                 width: cardWidth,
                 title: 'Maman',
-                svgPath: 'assets/icons/pregnancy/mother.svg',
+                imagePath: 'assets/illustrations/home/home_pregnant_woman.png',
                 onTap: () {
                   if (momChanges != null && momChanges!.isNotEmpty) {
                     MomBottomSheet.show(context, momChanges: momChanges!);
@@ -75,15 +77,15 @@ class PregnancyBookmarksSection extends StatelessWidget {
               ),
               _BookmarkCard(
                 width: cardWidth,
-                title: 'Conseils',
-                svgPath: 'assets/icons/pregnancy/tips.svg',
-                onTap: () => context.push('/pregnancy/tips'),
-              ),
-              _BookmarkCard(
-                width: cardWidth,
                 title: 'Symptômes',
                 svgPath: 'assets/icons/pregnancy/symptoms.svg',
                 onTap: () => SymptomsBottomSheet.show(context),
+              ),
+              _BookmarkCard(
+                width: cardWidth,
+                title: 'Suivi',
+                svgPath: 'assets/icons/pregnancy/charts.svg',
+                onTap: () => TrackingBottomSheet.show(context),
               ),
             ];
 
@@ -117,13 +119,15 @@ class PregnancyBookmarksSection extends StatelessWidget {
 class _BookmarkCard extends StatelessWidget {
   final double width;
   final String title;
-  final String svgPath;
+  final String? svgPath;
+  final String? imagePath;
   final VoidCallback onTap;
 
   const _BookmarkCard({
     required this.width,
     required this.title,
-    required this.svgPath,
+    this.svgPath,
+    this.imagePath,
     required this.onTap,
   });
 
@@ -149,10 +153,7 @@ class _BookmarkCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 42,
-              child: _buildIcon(),
-            ),
+            SizedBox(height: 52, child: Center(child: _buildIcon())),
             const SizedBox(height: 10),
             Text(
               title,
@@ -173,8 +174,18 @@ class _BookmarkCard extends StatelessWidget {
   }
 
   Widget _buildIcon() {
+    if (imagePath != null) {
+      return Image.asset(
+        imagePath!,
+        width: 52,
+        height: 52,
+        fit: BoxFit.contain,
+      );
+    }
     return SvgPicture.asset(
-      svgPath,
+      svgPath!,
+      width: 44,
+      height: 44,
       fit: BoxFit.contain,
     );
   }

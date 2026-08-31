@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<circle cx="32" cy="32" r="27" fill="#F08EA2"/>
+<path d="M19 28h8l9-8v24l-9-8h-8z" fill="#FFFFFF"/>
+<path d="M42 25c4 4 4 10 0 14M47 20c7 7 7 17 0 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
 </svg>

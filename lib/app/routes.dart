@@ -63,75 +63,30 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/splash',
+    initialLocation: '/pregnancy/tips',
     refreshListenable: notifier,
     redirect: (context, state) {
       final authState = ref.read(authViewModelProvider);
-
-      final isGoingToSplash = state.uri.path == '/splash';
-      final isGoingToOnboarding = state.uri.path == '/onboarding';
-      final isGoingToAuth = state.uri.path.startsWith('/auth');
-
-      // 1. Loading : on ne fait rien, on laisse sur la route actuelle (ou Splash)
-      if (authState.isLoading) {
+      
+      // Allow Splash/Onboarding to run.
+      if (state.matchedLocation == '/splash' || state.matchedLocation == '/onboarding') {
         return null;
       }
 
-      final session = authState.valueOrNull;
-      final isAuthenticated = session != null;
+      // If we are still loading, wait.
+      if (authState.isLoading) return null;
 
-      // 2. Utilisateur NON authentifié
-      if (!isAuthenticated) {
-        // Les routes publiques
-        if (isGoingToSplash ||
-            isGoingToOnboarding ||
-            isGoingToAuth ||
-            state.uri.path.startsWith('/dev')) {
-          return null; // OK
-        }
-        return '/auth'; // Route protégée → Auth
+      final isAuthRoute = state.matchedLocation.startsWith('/auth');
+      final isAuthenticated = authState.value != null;
+
+      if (!isAuthenticated && !isAuthRoute) {
+        return '/auth/login';
       }
 
-      // 3. Utilisateur AUTHENTIFIÉ
-      final profileOk = session.profileCompleted;
-      final pregnancyOk = session.pregnancyConfigured;
-
-      if (isGoingToSplash || isGoingToAuth || isGoingToOnboarding) {
-        // Un utilisateur connecté qui tente d'aller sur auth, splash ou onboarding doit être redirigé vers sa destination
-        if (!profileOk) {
-          return '/profile-setup';
-        }
-        if (!pregnancyOk) {
-          return '/pregnancy-setup';
-        }
+      if (isAuthenticated && isAuthRoute) {
         return '/home';
       }
 
-      // 4. Contrôle des setups obligatoires
-      if (!profileOk) {
-        if (state.uri.path != '/profile-setup') {
-          return '/profile-setup';
-        }
-        return null;
-      } else if (state.uri.path == '/profile-setup') {
-        // Profil complet mais on est sur /profile-setup
-        final dest = pregnancyOk ? '/home' : '/pregnancy-setup';
-        return dest;
-      }
-
-      if (!pregnancyOk) {
-        // Il est possible d'être sur pregnancy-edit ou pregnancy-setup
-        if (state.uri.path != '/pregnancy-setup' &&
-            state.uri.path != '/pregnancy-edit') {
-          return '/pregnancy-setup';
-        }
-        return null;
-      } else if (state.uri.path == '/pregnancy-setup') {
-        // Grossesse configurée mais on est sur /pregnancy-setup
-        return '/home';
-      }
-
-      // 5. Tout est OK
       return null;
     },
     routes: [

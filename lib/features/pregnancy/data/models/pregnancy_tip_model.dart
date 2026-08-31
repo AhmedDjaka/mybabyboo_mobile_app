@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'pregnancy_tip_illustration_model.dart';
 
 part 'pregnancy_tip_model.freezed.dart';
 part 'pregnancy_tip_model.g.dart';
@@ -13,6 +14,7 @@ abstract class PregnancyTipModel with _$PregnancyTipModel {
     required String summary,
     required String content,
     @JsonKey(name: 'is_featured') required bool isFeatured,
+    PregnancyTipIllustrationModel? illustration,
   }) = _PregnancyTipModel;
 
   factory PregnancyTipModel.fromJson(Map<String, dynamic> json) =>

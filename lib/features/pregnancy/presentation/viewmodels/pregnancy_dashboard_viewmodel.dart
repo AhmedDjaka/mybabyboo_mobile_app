@@ -62,14 +62,11 @@ class PregnancyDashboardViewModel
   }
 
   Future<void> _fetchWeeklyContent(int week) async {
-    print('[PREGNANCY_WEEK] load start week=$week');
     state = state.copyWith(isWeekLoading: true, weeklyError: null);
     try {
       final content = await _getWeeklyPregnancyContent.execute(week);
-      print('[PREGNANCY_WEEK] load success week=$week');
       state = state.copyWith(isWeekLoading: false, weeklyContent: content);
     } catch (e) {
-      print('[PREGNANCY_WEEK] load error week=$week');
       state = state.copyWith(
         isWeekLoading: false,
         weeklyError: 'Impossible de charger le contenu de cette semaine.',
@@ -83,8 +80,6 @@ class PregnancyDashboardViewModel
 
     final oldWeek = state.selectedWeek!;
     final newWeek = oldWeek - 1;
-    print('[PREGNANCY_WEEK] swipe previous');
-    print('[PREGNANCY_WEEK] from=$oldWeek to=$newWeek');
     state = state.copyWith(selectedWeek: newWeek);
     await _fetchWeeklyContent(newWeek);
   }
@@ -98,8 +93,6 @@ class PregnancyDashboardViewModel
 
     final oldWeek = state.selectedWeek!;
     final newWeek = oldWeek + 1;
-    print('[PREGNANCY_WEEK] swipe next');
-    print('[PREGNANCY_WEEK] from=$oldWeek to=$newWeek');
     state = state.copyWith(selectedWeek: newWeek);
     await _fetchWeeklyContent(newWeek);
   }

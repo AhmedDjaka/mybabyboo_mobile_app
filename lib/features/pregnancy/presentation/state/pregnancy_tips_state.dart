@@ -8,6 +8,7 @@ abstract class PregnancyTipsState with _$PregnancyTipsState {
   const factory PregnancyTipsState({
     @Default(true) bool isLoading,
     @Default(null) String? error,
+    @Default([]) List<PregnancyTip> allTips,
     @Default([]) List<PregnancyTip> tips,
     PregnancyTipCategory? selectedCategory,
     int? currentWeekContext,

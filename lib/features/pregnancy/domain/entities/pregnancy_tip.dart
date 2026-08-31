@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'pregnancy_tip_illustration.dart';
 
 part 'pregnancy_tip.freezed.dart';
 
@@ -21,5 +22,6 @@ abstract class PregnancyTip with _$PregnancyTip {
     required String summary,
     required String content,
     required bool isFeatured,
+    PregnancyTipIllustration? illustration,
   }) = _PregnancyTip;
 }

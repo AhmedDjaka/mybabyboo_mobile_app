@@ -56,6 +56,12 @@ class AuthViewModel extends _$AuthViewModel {
     }
   }
 
+  Future<void> forceLogoutOnSessionExpired() async {
+    final storage = ref.read(secureStorageServiceProvider);
+    await storage.deleteToken();
+    state = const AsyncValue.data(null);
+  }
+
   Future<void> markProfileCompleted() async {
     final currentSession = state.value;
     if (currentSession != null) {

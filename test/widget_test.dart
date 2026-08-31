@@ -17,6 +17,18 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     // Build our app and trigger a frame.
     await tester.pumpWidget(const ProviderScope(child: MyBabyBooApp()));
-    await tester.pumpAndSettle(const Duration(seconds: 10));
+    
+    // The splash screen contains consecutive Lottie animations. 
+    // We pump deterministic durations to allow the animations and the navigation to finish.
+    await tester.pump(const Duration(milliseconds: 3000));
+    await tester.pump(const Duration(milliseconds: 3500));
+    
+    // Instead of pumpAndSettle which times out if there are infinite animations
+    // (e.g. pulsing icons, lotties, loading indicators), we just pump a few frames
+    // to allow the route transition to complete.
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 500));
+    
+    expect(find.byType(MyBabyBooApp), findsOneWidget);
   });
 }

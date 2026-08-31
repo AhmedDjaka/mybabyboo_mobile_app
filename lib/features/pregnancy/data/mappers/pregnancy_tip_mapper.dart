@@ -1,5 +1,6 @@
 import 'package:baby_mama/features/pregnancy/data/models/pregnancy_tip_model.dart';
 import 'package:baby_mama/features/pregnancy/domain/entities/pregnancy_tip.dart';
+import 'package:baby_mama/features/pregnancy/domain/entities/pregnancy_tip_illustration.dart';
 
 class PregnancyTipMapper {
   static PregnancyTip fromModel(PregnancyTipModel model) {
@@ -11,6 +12,14 @@ class PregnancyTipMapper {
       summary: model.summary,
       content: model.content,
       isFeatured: model.isFeatured,
+      illustration: model.illustration != null
+          ? PregnancyTipIllustration(
+              key: model.illustration!.key,
+              thumbnailUrl: model.illustration!.thumbnailUrl,
+              imageUrl: model.illustration!.imageUrl,
+              altText: model.illustration!.altText,
+            )
+          : null,
     );
   }
 

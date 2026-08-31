@@ -182,7 +182,7 @@ class PregnancyPage extends ConsumerWidget {
                         color: AppColors.surfaceSoft,
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(
-                          color: AppColors.error.withOpacity(0.3),
+                          color: AppColors.error.withValues(alpha: 0.3),
                         ),
                       ),
                       child: Column(
@@ -323,9 +323,7 @@ class PregnancyPage extends ConsumerWidget {
 
               SliverSafeArea(
                 top: false,
-                sliver: SliverToBoxAdapter(
-                  child: SizedBox(height: 32),
-                ),
+                sliver: SliverToBoxAdapter(child: SizedBox(height: 32)),
               ),
             ],
           ),

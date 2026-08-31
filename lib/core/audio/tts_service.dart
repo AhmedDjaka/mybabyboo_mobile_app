@@ -24,6 +24,9 @@ class TtsService {
     final languages = await _flutterTts.getLanguages;
     debugPrint('[TtsService] Available languages: $languages');
 
+    final engines = await _flutterTts.getEngines;
+    debugPrint('[TtsService] Available engines: $engines');
+
     final isFrSupported = await _flutterTts.isLanguageAvailable("fr-FR");
     debugPrint('[TtsService] fr-FR available: $isFrSupported');
 

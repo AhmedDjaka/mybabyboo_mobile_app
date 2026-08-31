@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../app/theme/app_colors.dart';
+import '../../../../shared/widgets/accessibility/voice_help_button.dart';
 import '../../domain/entities/pregnancy_tip.dart';
+import 'pregnancy_tip_illustration_view.dart';
 import 'pregnancy_tip_ui_helpers.dart';
 
 class PregnancyTipBottomSheet extends StatelessWidget {
@@ -12,8 +13,12 @@ class PregnancyTipBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryColor = PregnancyTipUiHelpers.getColorForCategory(tip.category);
-    final categoryLabel = PregnancyTipUiHelpers.getLabelForCategory(tip.category);
+    final categoryColor = PregnancyTipUiHelpers.getColorForCategory(
+      tip.category,
+    );
+    final categoryLabel = PregnancyTipUiHelpers.getLabelForCategory(
+      tip.category,
+    );
 
     return Container(
       decoration: const BoxDecoration(
@@ -30,15 +35,73 @@ class PregnancyTipBottomSheet extends StatelessWidget {
           _buildDragHandle(),
           Flexible(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 16.0,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            backgroundColor: Colors.transparent,
+                            insetPadding: const EdgeInsets.all(16),
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              alignment: Alignment.center,
+                              children: [
+                                InteractiveViewer(
+                                  panEnabled: true,
+                                  minScale: 1.0,
+                                  maxScale: 4.0,
+                                  child: PregnancyTipIllustrationView(
+                                    imageUrl: tip.illustration?.imageUrl,
+                                    category: tip.category.name,
+                                    borderRadius: BorderRadius.circular(16),
+                                    altText: tip.illustration?.altText,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: -40,
+                                  right: 0,
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.close,
+                                      color: Colors.white,
+                                      size: 30,
+                                    ),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: PregnancyTipIllustrationView(
+                        imageUrl: tip.illustration?.imageUrl,
+                        category: tip.category.name,
+                        width: double.infinity,
+                        height: 180,
+                        borderRadius: BorderRadius.circular(16),
+                        altText: tip.illustration?.altText,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: categoryColor.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
@@ -54,33 +117,10 @@ class PregnancyTipBottomSheet extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          // TTS logic will be added here
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Lecture audio bientôt disponible')),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.textPrimary.withValues(alpha: 0.05),
-                                blurRadius: 8,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: SvgPicture.asset(
-                            'assets/icons/pregnancy/audio.svg',
-                            width: 24,
-                            height: 24,
-                            colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
-                          ),
-                        ),
+                      VoiceHelpButton(
+                        textToRead: "${tip.title}. ${tip.content}",
+                        isFilled: false,
+                        isManualAction: true,
                       ),
                     ],
                   ),
@@ -162,10 +202,7 @@ class PregnancyTipBottomSheet extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.primaryContainer.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.primaryContainer,
-          width: 1,
-        ),
+        border: Border.all(color: AppColors.primaryContainer, width: 1),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

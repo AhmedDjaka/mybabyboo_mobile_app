@@ -2,18 +2,44 @@ import 'package:flutter/material.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../domain/entities/pregnancy_tip.dart';
 import 'pregnancy_tip_bottom_sheet.dart';
+import 'pregnancy_tip_illustration_view.dart';
 import 'pregnancy_tip_ui_helpers.dart';
 
 class PregnancyTipCard extends StatelessWidget {
   final PregnancyTip tip;
+  final int? currentWeek;
+  final bool isDailyTip;
 
-  const PregnancyTipCard({super.key, required this.tip});
+  const PregnancyTipCard({
+    super.key,
+    required this.tip,
+    this.currentWeek,
+    this.isDailyTip = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final categoryColor = PregnancyTipUiHelpers.getColorForCategory(tip.category);
-    final categoryLabel = PregnancyTipUiHelpers.getLabelForCategory(tip.category);
-    final iconData = PregnancyTipUiHelpers.getIconForCategory(tip.category);
+    final categoryColor = PregnancyTipUiHelpers.getColorForCategory(
+      tip.category,
+    );
+    final categoryLabel = PregnancyTipUiHelpers.getLabelForCategory(
+      tip.category,
+    );
+
+    String? badgeLabel;
+    Color? badgeColor;
+    if (!isDailyTip) {
+      if (currentWeek != null && tip.week == currentWeek) {
+        badgeLabel = 'NOUVEAU';
+        badgeColor = AppColors.primary;
+      } else if (tip.isFeatured) {
+        badgeLabel = 'À LA UNE';
+        badgeColor = const Color(0xFFE5B05C);
+      } else if (tip.week != null) {
+        badgeLabel = 'SEMAINE ${tip.week}';
+        badgeColor = AppColors.textSecondary;
+      }
+    }
 
     return GestureDetector(
       onTap: () {
@@ -41,13 +67,13 @@ class PregnancyTipCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: categoryColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Icon(iconData, color: categoryColor, size: 24),
+            PregnancyTipIllustrationView(
+              imageUrl: tip.illustration?.thumbnailUrl,
+              category: tip.category.name,
+              width: 100,
+              height: 100,
+              borderRadius: BorderRadius.circular(16),
+              altText: tip.illustration?.altText,
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -66,21 +92,26 @@ class PregnancyTipCard extends StatelessWidget {
                           letterSpacing: 0.5,
                         ),
                       ),
-                      if (tip.week != null) ...[
+                      if (badgeLabel != null) ...[
                         const SizedBox(width: 8),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
-                            color: AppColors.background,
+                            color:
+                                badgeColor?.withValues(alpha: 0.1) ??
+                                AppColors.background,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
-                            'Semaine ${tip.week}',
-                            style: const TextStyle(
+                            badgeLabel,
+                            style: TextStyle(
                               fontFamily: 'Quicksand',
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.textSecondary,
+                              color: badgeColor,
                             ),
                           ),
                         ),

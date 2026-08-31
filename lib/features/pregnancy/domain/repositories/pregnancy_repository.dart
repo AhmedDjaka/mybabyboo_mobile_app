@@ -20,8 +20,5 @@ abstract class PregnancyRepository {
 
   Future<WeeklyPregnancyContent?> getWeeklyContent(int week);
 
-  Future<List<PregnancyTip>> getPregnancyTips({
-    int? week,
-    String? category,
-  });
+  Future<List<PregnancyTip>> getPregnancyTips({int? week, String? category});
 }

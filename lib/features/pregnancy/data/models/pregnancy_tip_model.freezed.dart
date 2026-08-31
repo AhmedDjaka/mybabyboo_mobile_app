@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PregnancyTipModel {
 
- int get id; int? get week; String get category; String get title; String get summary; String get content;@JsonKey(name: 'is_featured') bool get isFeatured;
+ int get id; int? get week; String get category; String get title; String get summary; String get content;@JsonKey(name: 'is_featured') bool get isFeatured; PregnancyTipIllustrationModel? get illustration;
 /// Create a copy of PregnancyTipModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PregnancyTipModelCopyWith<PregnancyTipModel> get copyWith => _$PregnancyTipMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PregnancyTipModel&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PregnancyTipModel&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured)&&(identical(other.illustration, illustration) || other.illustration == illustration));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured);
+int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured,illustration);
 
 @override
 String toString() {
-  return 'PregnancyTipModel(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured)';
+  return 'PregnancyTipModel(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured, illustration: $illustration)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $PregnancyTipModelCopyWith<$Res>  {
   factory $PregnancyTipModelCopyWith(PregnancyTipModel value, $Res Function(PregnancyTipModel) _then) = _$PregnancyTipModelCopyWithImpl;
 @useResult
 $Res call({
- int id, int? week, String category, String title, String summary, String content,@JsonKey(name: 'is_featured') bool isFeatured
+ int id, int? week, String category, String title, String summary, String content,@JsonKey(name: 'is_featured') bool isFeatured, PregnancyTipIllustrationModel? illustration
 });
 
 
-
+$PregnancyTipIllustrationModelCopyWith<$Res>? get illustration;
 
 }
 /// @nodoc
@@ -65,7 +65,7 @@ class _$PregnancyTipModelCopyWithImpl<$Res>
 
 /// Create a copy of PregnancyTipModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,Object? illustration = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,week: freezed == week ? _self.week : week // ignore: cast_nullable_to_non_nullable
@@ -74,10 +74,23 @@ as String,title: null == title ? _self.title : title // ignore: cast_nullable_to
 as String,summary: null == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,isFeatured: null == isFeatured ? _self.isFeatured : isFeatured // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,illustration: freezed == illustration ? _self.illustration : illustration // ignore: cast_nullable_to_non_nullable
+as PregnancyTipIllustrationModel?,
   ));
 }
+/// Create a copy of PregnancyTipModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PregnancyTipIllustrationModelCopyWith<$Res>? get illustration {
+    if (_self.illustration == null) {
+    return null;
+  }
 
+  return $PregnancyTipIllustrationModelCopyWith<$Res>(_self.illustration!, (value) {
+    return _then(_self.copyWith(illustration: value));
+  });
+}
 }
 
 
@@ -159,10 +172,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? week,  String category,  String title,  String summary,  String content, @JsonKey(name: 'is_featured')  bool isFeatured)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? week,  String category,  String title,  String summary,  String content, @JsonKey(name: 'is_featured')  bool isFeatured,  PregnancyTipIllustrationModel? illustration)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PregnancyTipModel() when $default != null:
-return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured);case _:
+return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured,_that.illustration);case _:
   return orElse();
 
 }
@@ -180,10 +193,10 @@ return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? week,  String category,  String title,  String summary,  String content, @JsonKey(name: 'is_featured')  bool isFeatured)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? week,  String category,  String title,  String summary,  String content, @JsonKey(name: 'is_featured')  bool isFeatured,  PregnancyTipIllustrationModel? illustration)  $default,) {final _that = this;
 switch (_that) {
 case _PregnancyTipModel():
-return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured);case _:
+return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured,_that.illustration);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +213,10 @@ return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? week,  String category,  String title,  String summary,  String content, @JsonKey(name: 'is_featured')  bool isFeatured)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? week,  String category,  String title,  String summary,  String content, @JsonKey(name: 'is_featured')  bool isFeatured,  PregnancyTipIllustrationModel? illustration)?  $default,) {final _that = this;
 switch (_that) {
 case _PregnancyTipModel() when $default != null:
-return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured);case _:
+return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_that.content,_that.isFeatured,_that.illustration);case _:
   return null;
 
 }
@@ -215,7 +228,7 @@ return $default(_that.id,_that.week,_that.category,_that.title,_that.summary,_th
 @JsonSerializable()
 
 class _PregnancyTipModel implements PregnancyTipModel {
-  const _PregnancyTipModel({required this.id, this.week, required this.category, required this.title, required this.summary, required this.content, @JsonKey(name: 'is_featured') required this.isFeatured});
+  const _PregnancyTipModel({required this.id, this.week, required this.category, required this.title, required this.summary, required this.content, @JsonKey(name: 'is_featured') required this.isFeatured, this.illustration});
   factory _PregnancyTipModel.fromJson(Map<String, dynamic> json) => _$PregnancyTipModelFromJson(json);
 
 @override final  int id;
@@ -225,6 +238,7 @@ class _PregnancyTipModel implements PregnancyTipModel {
 @override final  String summary;
 @override final  String content;
 @override@JsonKey(name: 'is_featured') final  bool isFeatured;
+@override final  PregnancyTipIllustrationModel? illustration;
 
 /// Create a copy of PregnancyTipModel
 /// with the given fields replaced by the non-null parameter values.
@@ -239,16 +253,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PregnancyTipModel&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PregnancyTipModel&&(identical(other.id, id) || other.id == id)&&(identical(other.week, week) || other.week == week)&&(identical(other.category, category) || other.category == category)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.content, content) || other.content == content)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured)&&(identical(other.illustration, illustration) || other.illustration == illustration));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured);
+int get hashCode => Object.hash(runtimeType,id,week,category,title,summary,content,isFeatured,illustration);
 
 @override
 String toString() {
-  return 'PregnancyTipModel(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured)';
+  return 'PregnancyTipModel(id: $id, week: $week, category: $category, title: $title, summary: $summary, content: $content, isFeatured: $isFeatured, illustration: $illustration)';
 }
 
 
@@ -259,11 +273,11 @@ abstract mixin class _$PregnancyTipModelCopyWith<$Res> implements $PregnancyTipM
   factory _$PregnancyTipModelCopyWith(_PregnancyTipModel value, $Res Function(_PregnancyTipModel) _then) = __$PregnancyTipModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int? week, String category, String title, String summary, String content,@JsonKey(name: 'is_featured') bool isFeatured
+ int id, int? week, String category, String title, String summary, String content,@JsonKey(name: 'is_featured') bool isFeatured, PregnancyTipIllustrationModel? illustration
 });
 
 
-
+@override $PregnancyTipIllustrationModelCopyWith<$Res>? get illustration;
 
 }
 /// @nodoc
@@ -276,7 +290,7 @@ class __$PregnancyTipModelCopyWithImpl<$Res>
 
 /// Create a copy of PregnancyTipModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? week = freezed,Object? category = null,Object? title = null,Object? summary = null,Object? content = null,Object? isFeatured = null,Object? illustration = freezed,}) {
   return _then(_PregnancyTipModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,week: freezed == week ? _self.week : week // ignore: cast_nullable_to_non_nullable
@@ -285,11 +299,24 @@ as String,title: null == title ? _self.title : title // ignore: cast_nullable_to
 as String,summary: null == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,isFeatured: null == isFeatured ? _self.isFeatured : isFeatured // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,illustration: freezed == illustration ? _self.illustration : illustration // ignore: cast_nullable_to_non_nullable
+as PregnancyTipIllustrationModel?,
   ));
 }
 
+/// Create a copy of PregnancyTipModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PregnancyTipIllustrationModelCopyWith<$Res>? get illustration {
+    if (_self.illustration == null) {
+    return null;
+  }
 
+  return $PregnancyTipIllustrationModelCopyWith<$Res>(_self.illustration!, (value) {
+    return _then(_self.copyWith(illustration: value));
+  });
+}
 }
 
 // dart format on

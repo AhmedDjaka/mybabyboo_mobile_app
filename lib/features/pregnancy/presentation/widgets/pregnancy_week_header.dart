@@ -55,7 +55,9 @@ class PregnancyWeekHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primary.withOpacity(0.05), // Very soft shadow
+                color: AppColors.primary.withValues(
+                  alpha: 0.05,
+                ), // Very soft shadow
                 blurRadius: 15,
                 offset: const Offset(0, 4),
               ),
